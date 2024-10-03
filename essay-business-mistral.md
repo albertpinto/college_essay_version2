@@ -1,0 +1,13 @@
+In the vibrant tapestry of life, we often find ourselves entwined in an intricate dance between passion and purpose. For me, this symphony has been a captivating journey marked by diverse experiences and unyielding determination.
+
+I stand at the intersection of data-driven decision making and the performing arts, a seemingly incongruous union that forms the essence of my identity. As a Strategy Consultant at Nova Consulting, I leverage the power of data to drive meaningful change in the automotive industry. Yet, when the day is done, I find solace in the rhythmic embrace of music, dance, and acting.
+
+The seeds of this duality were sown long ago, as a young girl growing up in a bustling household in India. My parents encouraged me to explore various artistic avenues - from singing and dancing to playing musical instruments. This rich foundation instilled in me a deep appreciation for creativity and expression. As I ventured into the corporate world, I never lost sight of my roots and continued nurturing my artistic pursuits alongside my professional growth.
+
+The journey has not been without challenges. Balancing the demands of a demanding career and creative passions required immense dedication and discipline. Yet, each hurdle overcome served as a stepping stone towards becoming a versatile individual capable of navigating both worlds seamlessly. I found myself performing on prestigious stages, such as the Nobel Peace Prize concert, and guest-starring in popular web series like "Escape the Night."
+
+As a Vice President at Insync, I honed my leadership skills, spearheading initiatives to expand impact through performances and collaborations. These experiences taught me the power of collaboration and fostered my ability to bring people together for a common cause. Today, as a Marketing Committee Member at Asha for Education, I utilize these skills to promote education and empowerment for young girls in rural India.
+
+Looking ahead, I am excited about the opportunities that lie in store. As a Singer-Songwriter, Actor, Dancer, Musician, and Screenplay Writer, I aspire to create meaningful content that resonates with people across the globe. Simultaneously, as a Strategy Consultant, I aim to leverage data to drive positive change, empowering businesses to grow sustainably and ethically.
+
+In essence, my story is one of resilience, adaptability, and a relentless pursuit of passion. It is a testament to the power of embracing diversity and the beauty that lies in our unique journeys. As I continue to weave this tapestry, I invite you to join me on this adventure - a journey filled with artistry, ambition, and an unwavering commitment to making a difference.

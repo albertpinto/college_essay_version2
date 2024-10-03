@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "college_essay_version2"
+version = "0.1.0"
+description = "college-essay-version2 using crewAI"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<=3.13"
+crewai = { extras = ["tools"], version = ">=0.61.0,<1.0.0" }
+
+
+[tool.poetry.scripts]
+college_essay_version2 = "college_essay_version2.main:run"
+run_crew = "college_essay_version2.main:run"
+train = "college_essay_version2.main:train"
+replay = "college_essay_version2.main:replay"
+test = "college_essay_version2.main:test"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
