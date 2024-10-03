@@ -12,33 +12,22 @@ import os
 from langchain.agents import initialize_agent, Tool
 from college_essay_version2.tools.txt_PDF_tool import PDFConversionTool
 
-# Added a comment
-#LLM = 'gpt-4o'
-# Initialize Ollama LLM
-#llm=LLM(model="ollama/llama3", base_url="http://localhost:11434")
-#llm=LLM(model="ollama/qwen2.5", base_url="http://localhost:11434")
-#llm=LLM(model="ollama/mistral-nemo", base_url="http://localhost:11434")
-llm=LLM(model="ollama/falcon", base_url="http://localhost:11434")
-
-
+# Uncomment this to use openAI models.
 #llm='gpt-4o'
 #llm ='gpt-3.5-turbo'
 #llm="o1-preview"
 #llm ="o1-mini"
+# Initialize Ollama LLM
 
+# Use this for non openAI models
 
-
-
-# llm = LLM(
-#     model="gpt-4",
-#     temperature=0.7,
-#     base_url="https://api.openai.com/v1",
-#     api_key="your-api-key-here"
-# )
+llm=LLM(model="ollama/llama3", base_url="http://localhost:11434")
 
 @CrewBase
 class CollegeEssayVersion2Crew():
-	"""CollegeEssayVersion2 crew"""
+	"""This is the optimal crew for generating a college essay version 2 and can use
+	any openAI and other models to generate the essay"""
+	
 	@agent
 	def essay_generator(self) -> Agent:
 		return Agent(
@@ -77,13 +66,10 @@ class CollegeEssayVersion2Crew():
 		"""Creates the CollegeEssayVersion2 crew"""
 		return Crew(
 			agents=[self.essay_generator()], # Automatically created by the @agent decorator
-			#agents=self.agents, # Automatically created by the @agent decorator
 			tasks=self.tasks, # Automatically created by the @task decorator
-			process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
-			#process=Process.sequential,
+			process=Process.hierarchical, 
 			manager_agent=self.critic_reviewer(),
 			verbose=True,
-			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
 		)
 
 	def get_file_content(self):
