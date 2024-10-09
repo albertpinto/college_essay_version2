@@ -11,10 +11,16 @@ const CollegeEssayStreamer = () => {
   const [student, setStudent] = useState('');
   const [essayTitle, setEssayTitle] = useState('');
   const [resumeFile, setResumeFile] = useState(null);
+  const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo');
+
+  const models = [
+    'o1-preview', 'o1-mini', 'gpt-4o', 'claude-2.5', 'gpt-3.5-turbo', 
+    'Mistral-nemo', 'Llama3', 'Mistral'
+  ];
 
   const startStreaming = useCallback(async () => {
-    if (!program || !student || !essayTitle || !resumeFile) {
-      setError('Please fill in all fields and upload a resume before starting.');
+    if (!program || !student || !essayTitle || !resumeFile || !selectedModel) {
+      setError('Please fill in all fields, upload a resume, and select a model before starting.');
       return;
     }
 
@@ -41,7 +47,13 @@ const CollegeEssayStreamer = () => {
       const resumeFilePath = uploadResult.file_path;
 
       // Now start the SSE connection with all parameters
-      const params = new URLSearchParams({ program, student, essayTitle, resumeFilePath }).toString();
+      const params = new URLSearchParams({ 
+        program, 
+        student, 
+        essayTitle, 
+        resumeFilePath,
+        model: selectedModel
+      }).toString();
       eventSourceRef.current = new EventSource(`http://localhost:8000/stream_college_essay?${params}`);
 
       eventSourceRef.current.onmessage = (event) => {
@@ -70,7 +82,7 @@ const CollegeEssayStreamer = () => {
       setError(`Failed to start essay generation: ${err.message}`);
       setIsStreaming(false);
     }
-  }, [program, student, essayTitle, resumeFile]);
+  }, [program, student, essayTitle, resumeFile, selectedModel]);
 
   const handleClear = useCallback(() => {
     setMessages([]);
@@ -84,21 +96,12 @@ const CollegeEssayStreamer = () => {
     setStudent('');
     setEssayTitle('');
     setResumeFile(null);
+    setSelectedModel('gpt-3.5-turbo');
   }, []);
 
   return (
     <div className="w-auto h-auto border border-gray-600 flex flex-col justify-between p-4">
-      <h3 className="text-xl font-bold mb-4">College Essay Generator</h3>
-      
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Program"
-          value={program}
-          onChange={(e) => setProgram(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-      </div>
+      {/* <h3 className="text-xl font-bold mb-4">College Essay Generator</h3> */}
       <div className="mb-4">
         <input
           type="text"
@@ -108,6 +111,17 @@ const CollegeEssayStreamer = () => {
           className="w-full p-2 border border-gray-300 rounded"
         />
       </div>
+   
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Program"
+          value={program}
+          onChange={(e) => setProgram(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded"
+        />
+      </div>
+
       <div className="mb-4">
         <input
           type="text"
@@ -124,6 +138,19 @@ const CollegeEssayStreamer = () => {
           onChange={(e) => setResumeFile(e.target.files[0])}
           className="w-full p-2 border border-gray-300 rounded"
         />
+      </div>
+      <div className="mb-4">
+        <select
+          value={selectedModel}
+          onChange={(e) => setSelectedModel(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded"
+        >
+          {models.map((model) => (
+            <option key={model} value={model}>
+              {model}
+            </option>
+          ))}
+        </select>
       </div>
       
       <div className="overflow-y-auto max-h-96 mb-4">

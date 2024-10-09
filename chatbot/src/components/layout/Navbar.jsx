@@ -65,7 +65,7 @@ function Navbar({ title }) {
 }
 
 Navbar.defaultProps = {
-  title: "AI Chat",
+  title: "College Essay Generator Powered by AI-Agents",
 };
 
 Navbar.propTypes = {
