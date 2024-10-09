@@ -1,0 +1,102 @@
+ALBERT PINTO
+San Francisco Bay Area | 925 640 3076 | albertpinto123@gmail.com | www.linkedin.com/in/albert-pinto
+PROFESSIONAL SUMMARY
+Seasoned leader with over 15 years of management experience, including 5+ years leveraging AI, data science, and machine
+learning. Successfully managed teams ranging from 8 to 50 members and worked with over 2000 fortune 500 customers.
+Technical leadership expertise in
+     ● Direct the design, management, and execution of enterprise-wide AI technology tools, maintaining high quality
+         standards and managing the activities necessary to keep the technology support operations running seamlessly.
+     ● Build pioneering AI prototypes from scratch drawing on expertise in the latest emerging technologies in artificial
+         intelligence (AI) and machine learning (ML).
+     ● Drive strategic AI and data science initiatives implementing effective cost controls, making resource allocation
+         decisions, and improving the team’s ability to deliver high-quality experiences to customers.
+     ● Guide executive teams to establish key success indicators related to the data science, technical support, and quality
+         assurance organizations, and report on performance metrics in ticketing and tracking systems.
+     ● Manage the operational aspects of engineering and enterprise customer service as well as the assessment,
+         identification, and implementation of strategies and technologies to enhance application performance.
+PROFESSIONAL EXPERIENCE
+SUPPORT VECTORS, Fremont CA
+An artificial intelligence (AI), big-data, machine-learning, and technical mentoring, product & consulting startup.
+Director of AI, Data Science and Machine Learning, Sep 2022 – Present
+Spearhead the creation of scalable, enterprise-grade AI applications, cutting-edge platforms, and solutions, leading the charge
+in delivering innovative projects for a portfolio of 10 clients from new IT startups to SMB enterprises. Manage a dynamic
+12-member engineering team in the U.S. and India, promoting a culture of data-driven innovation and operational excellence.
+     ● Achieved over 90% of customer satisfaction on AI projects, expecting to double customers and revenue in the next
+         year by tailoring products to meet the needs of clients utilizing various emerging AI technologies.
+     ● Scheduled to unveil a minimum viable product (MVP) for an agentic multi-agent framework using AutoGen to simplify
+         the creation and maintenance of large amounts of repetitious text.
+     ● Enhanced multimodal semantic search with RAG (Retrieval Augmented Generation) capabilities by developing a vector
+         database platform and advanced virtual assistants for two Silicon Valley startups and two Fortune 500 companies.
+     ● Developed an end-to-end platform and AI assistant from scratch featuring functionality to integrate with other vector
+         databases when needed, in the process of implementing this solution for three Silicon Valley startups.
+     ● Delivered a unique convolutional neural network (CNN) model-based car identification solution for an IT startup.
+WELKIN HEALTH, San Francisco CA
+An automated care management platform with $5M annual revenue, 30 customers, and 1M patients.
+Head of Data, Technical Support, and Quality Assurance, Sep 2020 - Sep 2022
+Led an 8-person team on data science, end to end support, quality assurance, and performance of a global healthcare platform
+including a comprehensive portfolio of SaaS products and customizable API solutions hosted on AWS. Compiled and presented
+monthly executive summaries on product, support, and customer data, ensuring informed decision-making.
+     ● Improved customer satisfaction ratings from 65% to 95% in 8 months by spearheading the recruitment of a new
+         support team of 4 engineers in the Ukraine and building a new and scalable technical support system.
+     ● Established a successful revenue stream by developing advanced data science solutions, reporting, and metrics
+         tailored for enterprise customers, alongside basic standard metrics for other customers using Sisense.
+     ● Reduced resolution time by over 30% through training and coaching the QA engineering team to efficiently support
+         new products and set up on-call processes while offboarding and migrating customers from old systems.
+     ● Ensured early notification to customers regarding outages and provided regular updates on expected resolutions by
+         devising an effective testing plan for all features and defects.
+4OVER,INC, Greater Los Angeles Area
+An online printing business that generated $300M in annual ecommerce revenues.
+Senior Manager of Content Strategy & Engineering, Aug 2017 – Aug 2020
+Led a team of 8 engineers, reporting to the Chief Technology Officer (CTO).
+    ●    Improved website visibility and organic traffic by establishing an effective SEO strategy, incorporating structured
+         metadata, AdWords, and insights from customer behavior.
+    ●    Streamlined content management processes through assisting with the design and managing the transition from an
+         in-house dotCMS to Contentful CMS, ensuring efficient content and asset handling.
+    ●    Enhanced user experience with real-time content updates by architecting and managing a library for real-time content
+         delivery via Contentful’s APIs, implementing secure roles, entitlements, and authentication mechanisms.
+    ●    Boosted performance 15% and reduced costs 33% playing a key role in rolling out a new online platform using ReactJS,
+         Node.js, Postgres, and Contentful.
+DELL/EMC/Documentum, Pleasanton CA
+An enterprise content management platform company serving large and medium fortune 500 companies.
+Senior Manager of Engineering, Mar 2008 - Aug 2017
+Directed support engineering and operations teams for the Americas generating $600M revenue. Charged with rectifying
+defects, handling release requests, offering consultancy services, and addressing feature inquiries. Conducted high-stakes
+communications with C-level executives regarding escalations, promoting transparency and accountability at all levels.
+    ● Achieved 80% issue resolution within a two-weeks successfully resolving over 3,000 critical customer issues across
+         diverse product lines that impacted 2,000+ clients by crafting and implementing decisive action plans.
+    ● Established a customer-centric engineering group providing global product support for a customer base of 5,000
+         leading and synchronizing the efforts of 100+ engineers on 25 domestic and 20 international engineering teams.
+    ● End to End Support for numerous Fortune 500 corporations, including Walmart, USAA, Bank of America, Chevron, Eli
+         Lilly, BHP, and Boeing, each contributing more than a million dollars in support and sustenance revenue.
+    ● Recognized with Rockstar and Gold Customer Service Awards for a USAA project that involved enhancing product
+         support for mixed versions of clients and content repositories; collaborated cross-functionally on a groundbreaking
+         innovation that earned multiple patents and was highlighted at the EMC World Conference.
+    ● Boosted customer satisfaction and safeguarded the trust and loyalty of valued clients including Intel, Cisco, John
+         Wiley, and Pearson by deploying a solution that rectified over 255 critical product defects and feature requests;
+         enhanced the platform and enabled client applications to be fully compatible with DITA technology.
+    ● Spearheaded a comprehensive overhaul of the content repository platform yielding 25 new patents and setting new
+         industry benchmarks; attracted the World Bank as a new client and generated over $25M in license fees.
+Additional Roles with Documentum/DELL EMC:
+    ● Manager, Web Content Management (WCM) Group
+    ● Diversity, Equality & Inclusion,Asian Circle West coast, Vice President
+    ● Lead Architect for IT, Development and Applications Team
+EDUCATION & CREDENTIALS
+B.S & M.S., Computer Science and Engineering | Manipal Institute of Technology, India
+Certifications
+    ● Multi AI Agent Systems with crewAI, DeepLearning.AI, Sep 2024
+    ● AI Agentic Design Patterns with AutoGen, DeepLearning.AI, Aug 2024
+    ● Fine tuning large language models, DeepLearning.AI 2024
+    ● AI Neural Networks & Generative certification, SupportVectors 2024
+    ● Basic and Advanced AI LLM projects, Certification, SupportVectors 2024
+    ● Intermediate & Advanced Deep Learning AI certification, SupportVectors, 2022
+    ● Data Wrangling & Visualization in Python, SupportVectors, 2023
+    ● Six Sigma Yellow Belt
+Technical Skills
+    ● AI/ML: Generative AI, Large Language Models (LLMs), Natural Language Processing (NLP), Prompt Engineering, Neural
+         Nets, AI Search, FAISS, Transformers, Lang Chain technologies, Vector Databases, Retrieval-Augmented Generation
+         (RAG), Adaptive RAG (ARAG), voice synthesis (Eleven Labs' technology), GAN, Llama-Index,Autogen, CrewAI, Llava,
+         CLIP, BLIP, CNN, RNN and others
+    ● Agentic Frameworks: Autogen, CrewAI, Langchain & Llama-Index using tree of thought and Chain of thought.
+    ● Deep Learning Frameworks: PyTorch,TensorFlow,
+    ● Compute Frameworks: Ray, Spark/Hadoop,
+Github repository: https://github.com/albertpinto/
