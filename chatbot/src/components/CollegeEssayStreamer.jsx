@@ -1,20 +1,88 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
+import useEssayStore from './essayStore';
+
+const InputField = ({ placeholder, value, onChange }) => (
+  <input
+    type="text"
+    placeholder={placeholder}
+    value={value}
+    onChange={(e) => onChange(e.target.value)}
+    className="w-full p-2 border border-gray-300 rounded mb-4"
+  />
+);
+
+const FileInput = ({ onChange }) => (
+  <input
+    type="file"
+    accept=".txt,.pdf,.doc,.docx"
+    onChange={(e) => onChange(e.target.files[0])}
+    className="w-full p-2 border border-gray-300 rounded mb-4"
+  />
+);
+
+const ModelSelect = ({ value, onChange, options }) => (
+  <select
+    value={value}
+    onChange={(e) => onChange(e.target.value)}
+    className="w-full p-2 border border-gray-300 rounded mb-4"
+  >
+    {options.map((option) => (
+      <option key={option} value={option}>
+        {option}
+      </option>
+    ))}
+  </select>
+);
+
+const MessageDisplay = ({ messages }) => (
+  <div className="overflow-y-auto max-h-96 mb-4">
+    {messages.map((message, index) => (
+      <div key={index} className="mb-2 p-2 rounded bg-sky-500/100 shadow-lg shadow-sky-500/50">
+        {message.text}
+      </div>
+    ))}
+  </div>
+);
+
+const PDFViewer = ({ content }) => (
+  <div className="mb-4">
+    <h4 className="text-lg font-semibold mb-2">Generated PDF:</h4>
+    <iframe
+      src={`data:application/pdf;base64,${content}`}
+      width="100%"
+      height="500px"
+      title="Generated Essay PDF"
+    />
+  </div>
+);
+
+const Button = ({ onClick, disabled, children, className }) => (
+  <button
+    onClick={onClick}
+    disabled={disabled}
+    className={`px-4 py-2 rounded-full ${className}`}
+  >
+    {children}
+  </button>
+);
 
 const CollegeEssayStreamer = () => {
-  const [messages, setMessages] = useState([]);
-  const [isStreaming, setIsStreaming] = useState(false);
-  const [error, setError] = useState(null);
-  const [pdfContent, setPdfContent] = useState(null);
   const eventSourceRef = useRef(null);
-
-  const [program, setProgram] = useState('');
-  const [student, setStudent] = useState('');
-  const [resumeFile, setResumeFile] = useState(null);
-  const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo');
+  const {
+    program, setProgram,
+    student, setStudent,
+    resumeFile, setResumeFile,
+    selectedModel, setSelectedModel,
+    messages, addMessage, setMessages,
+    isStreaming, setIsStreaming,
+    error, setError,
+    pdfContent, setPdfContent,
+    clearAll
+  } = useEssayStore();
 
   const models = [
     'o1-preview', 'o1-mini', 'gpt-4o', 'claude-2.5', 'gpt-3.5-turbo', 
-    'mistral-nemo', 'llama3', 'mistral','phi','falcon'
+    'mistral-nemo', 'llama3', 'mistral', 'phi', 'falcon'
   ];
 
   const startStreaming = useCallback(async () => {
@@ -28,7 +96,6 @@ const CollegeEssayStreamer = () => {
     setError(null);
     setPdfContent(null);
 
-    // First, upload the resume file
     const formData = new FormData();
     formData.append('file', resumeFile);
     
@@ -45,7 +112,6 @@ const CollegeEssayStreamer = () => {
       const uploadResult = await uploadResponse.json();
       const resumeFilePath = uploadResult.file_path;
 
-      // Now start the SSE connection with all parameters
       const params = new URLSearchParams({ 
         program, 
         student, 
@@ -60,7 +126,7 @@ const CollegeEssayStreamer = () => {
           const base64Content = data.replace('PDF_CONTENT:', '');
           setPdfContent(base64Content);
         } else if (data) {
-          setMessages(prev => [...prev, { text: data, type: 'bot' }]);
+          addMessage({ text: data, type: 'bot' });
         }
       };
 
@@ -80,102 +146,37 @@ const CollegeEssayStreamer = () => {
       setError(`Failed to start essay generation: ${err.message}`);
       setIsStreaming(false);
     }
-  }, [program, student,resumeFile, selectedModel]);
+  }, [program, student, resumeFile, selectedModel, setIsStreaming, setMessages, setError, setPdfContent, addMessage]);
 
   const handleClear = useCallback(() => {
-    setMessages([]);
-    setError(null);
-    setPdfContent(null);
     if (eventSourceRef.current) {
       eventSourceRef.current.close();
     }
-    setIsStreaming(false);
-    setProgram('');
-    setStudent('');
-    setResumeFile(null);
-    setSelectedModel('gpt-3.5-turbo');
-  }, []);
+    clearAll();
+  }, [clearAll]);
 
   return (
     <div className="w-auto h-auto border border-gray-600 flex flex-col justify-between p-4">
-      {/* <h3 className="text-xl font-bold mb-4">College Essay Generator</h3> */}
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Student Name"
-          value={student}
-          onChange={(e) => setStudent(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-      </div>
-   
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Program"
-          value={program}
-          onChange={(e) => setProgram(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-      </div>
-      <div className="mb-4">
-        <input
-          type="file"
-          accept=".txt,.pdf,.doc,.docx"
-          onChange={(e) => setResumeFile(e.target.files[0])}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-      </div>
-      <div className="mb-4">
-        <select
-          value={selectedModel}
-          onChange={(e) => setSelectedModel(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        >
-          {models.map((model) => (
-            <option key={model} value={model}>
-              {model}
-            </option>
-          ))}
-        </select>
-      </div>
+      <InputField placeholder="Student Name" value={student} onChange={setStudent} />
+      <InputField placeholder="Program" value={program} onChange={setProgram} />
+      <FileInput onChange={setResumeFile} />
+      <ModelSelect value={selectedModel} onChange={setSelectedModel} options={models} />
       
-      <div className="overflow-y-auto max-h-96 mb-4">
-        {messages.map((message, index) => (
-          <div key={index} className="mb-2 p-2 rounded bg-sky-500/100 shadow-lg shadow-sky-500/50">
-            {message.text}
-          </div>
-        ))}
-      </div>
+      <MessageDisplay messages={messages} />
       
-      {pdfContent && (
-        <div className="mb-4">
-          <h4 className="text-lg font-semibold mb-2">Generated PDF:</h4>
-          <iframe
-            src={`data:application/pdf;base64,${pdfContent}`}
-            width="100%"
-            height="500px"
-            title="Generated Essay PDF"
-          />
-        </div>
-      )}
+      {pdfContent && <PDFViewer content={pdfContent} />}
       
       <div className="flex space-x-2">
-        <button
+        <Button
           onClick={startStreaming}
           disabled={isStreaming}
-          className={`px-4 py-2 rounded-full ${
-            isStreaming ? "bg-gray-400 cursor-not-allowed" : "bg-sky-500 text-white"
-          }`}
+          className={isStreaming ? "bg-gray-400 cursor-not-allowed" : "bg-sky-500 text-white"}
         >
           {isStreaming ? "Generating Essay..." : "Start Essay Generation"}
-        </button>
-        <button 
-          onClick={handleClear}
-          className="px-4 py-2 bg-red-500 text-white rounded-full"
-        >
+        </Button>
+        <Button onClick={handleClear} className="bg-red-500 text-white">
           Clear
-        </button>
+        </Button>
       </div>
       
       {error && (
