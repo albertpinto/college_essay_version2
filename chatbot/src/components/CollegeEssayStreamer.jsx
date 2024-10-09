@@ -9,7 +9,6 @@ const CollegeEssayStreamer = () => {
 
   const [program, setProgram] = useState('');
   const [student, setStudent] = useState('');
-  const [essayTitle, setEssayTitle] = useState('');
   const [resumeFile, setResumeFile] = useState(null);
   const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo');
 
@@ -19,7 +18,7 @@ const CollegeEssayStreamer = () => {
   ];
 
   const startStreaming = useCallback(async () => {
-    if (!program || !student || !essayTitle || !resumeFile || !selectedModel) {
+    if (!program || !student || !resumeFile || !selectedModel) {
       setError('Please fill in all fields, upload a resume, and select a model before starting.');
       return;
     }
@@ -50,7 +49,6 @@ const CollegeEssayStreamer = () => {
       const params = new URLSearchParams({ 
         program, 
         student, 
-        essayTitle, 
         resumeFilePath,
         model: selectedModel
       }).toString();
@@ -82,7 +80,7 @@ const CollegeEssayStreamer = () => {
       setError(`Failed to start essay generation: ${err.message}`);
       setIsStreaming(false);
     }
-  }, [program, student, essayTitle, resumeFile, selectedModel]);
+  }, [program, student,resumeFile, selectedModel]);
 
   const handleClear = useCallback(() => {
     setMessages([]);
@@ -94,7 +92,6 @@ const CollegeEssayStreamer = () => {
     setIsStreaming(false);
     setProgram('');
     setStudent('');
-    setEssayTitle('');
     setResumeFile(null);
     setSelectedModel('gpt-3.5-turbo');
   }, []);
@@ -118,16 +115,6 @@ const CollegeEssayStreamer = () => {
           placeholder="Program"
           value={program}
           onChange={(e) => setProgram(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded"
-        />
-      </div>
-
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Essay Title"
-          value={essayTitle}
-          onChange={(e) => setEssayTitle(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded"
         />
       </div>
