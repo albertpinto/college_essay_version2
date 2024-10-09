@@ -14,7 +14,7 @@ const CollegeEssayStreamer = () => {
 
   const models = [
     'o1-preview', 'o1-mini', 'gpt-4o', 'claude-2.5', 'gpt-3.5-turbo', 
-    'Mistral-nemo', 'Llama3', 'Mistral'
+    'mistral-nemo', 'llama3', 'mistral','phi','falcon'
   ];
 
   const startStreaming = useCallback(async () => {

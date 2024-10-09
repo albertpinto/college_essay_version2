@@ -35,7 +35,7 @@ class CollegeEssayVersion2Crew():
 		if self.model in ['gpt-4o', 'gpt-3.5-turbo', 'claude-2.5', 'o1-preview','o1-mini']:
 			return self.model
 		else:
-			return LLM(model=self.model, base_url="http://localhost:11434")
+			return LLM(model="ollama/"+ self.model, base_url="http://localhost:11434")
 	
 	@agent
 	def essay_generator(self) -> Agent:
