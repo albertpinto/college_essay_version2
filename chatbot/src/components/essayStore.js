@@ -1,10 +1,12 @@
+// essayStore.js
 import { create } from 'zustand';
 
 const useEssayStore = create((set) => ({
   program: '',
   student: '',
+  college: '',
   resumeFile: null,
-  selectedModel: 'gpt-3.5-turbo',
+  selectedModel: 'o1-mini',
   messages: [],
   isStreaming: false,
   error: null,
@@ -12,6 +14,7 @@ const useEssayStore = create((set) => ({
 
   setProgram: (program) => set({ program }),
   setStudent: (student) => set({ student }),
+  setCollege: (college) => set({ college }),
   setResumeFile: (resumeFile) => set({ resumeFile }),
   setSelectedModel: (selectedModel) => set({ selectedModel }),
   setMessages: (messages) => set({ messages }),
@@ -23,8 +26,9 @@ const useEssayStore = create((set) => ({
   clearAll: () => set({
     program: '',
     student: '',
+    college: '',
     resumeFile: null,
-    selectedModel: 'gpt-3.5-turbo',
+    selectedModel: 'o1-mini',
     messages: [],
     isStreaming: false,
     error: null,
@@ -33,3 +37,6 @@ const useEssayStore = create((set) => ({
 }));
 
 export default useEssayStore;
+
+
+

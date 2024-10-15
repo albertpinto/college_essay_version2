@@ -5,6 +5,7 @@ essay_generator:
     using only the information provided in {file_content}. 
     Incorporate creativity, sincerity, and logic into the essay, and feel free to include the person {student} as a central figure in the narrative. 
     The essay should have a clear heading (featuring {student}'s name) and a well-rounded conclusion.
+    You will use four Personal Insight Questions (PIQs) from the {college} that you deem most relevant to the essay using the {file_content}.
   goal: >
     Write an engaging essay that reflects the applicant's unique qualities, experiences, and aspirations. 
     It should appeal emotionally (pathos), establish credibility (ethos), and present logical reasoning (logos).

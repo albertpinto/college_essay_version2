@@ -1,5 +1,8 @@
 import React, { useRef, useCallback } from 'react';
 import useEssayStore from './essayStore';
+import axios from 'axios';
+
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 const InputField = ({ placeholder, value, onChange }) => (
   <input
@@ -20,12 +23,13 @@ const FileInput = ({ onChange }) => (
   />
 );
 
-const ModelSelect = ({ value, onChange, options }) => (
+const Select = ({ value, onChange, options, placeholder }) => (
   <select
     value={value}
     onChange={(e) => onChange(e.target.value)}
     className="w-full p-2 border border-gray-300 rounded mb-4"
   >
+    <option value="" disabled>{placeholder}</option>
     {options.map((option) => (
       <option key={option} value={option}>
         {option}
@@ -71,6 +75,7 @@ const CollegeEssayStreamer = () => {
   const {
     program, setProgram,
     student, setStudent,
+    college, setCollege,
     resumeFile, setResumeFile,
     selectedModel, setSelectedModel,
     messages, addMessage, setMessages,
@@ -85,9 +90,16 @@ const CollegeEssayStreamer = () => {
     'mistral-nemo', 'llama3', 'mistral', 'phi', 'falcon'
   ];
 
+  const colleges = [
+    'University of California', 'University of Texas', 'University of Illinois', 
+    'Harvard University', 'Yale University', 'Brown University', 'Stanford University', 
+    'Cornell University', 'Carnegie Mellon University', 'Princeton University', 
+    'Columbia University', 'University of Pennsylvania', 'Dartmouth College'
+  ];
+
   const startStreaming = useCallback(async () => {
-    if (!program || !student || !resumeFile || !selectedModel) {
-      setError('Please fill in all fields, upload a resume, and select a model before starting.');
+    if (!program || !student || !college || !resumeFile || !selectedModel) {
+      setError('Please fill in all fields, select a college, upload a resume, and select a model before starting.');
       return;
     }
 
@@ -100,7 +112,7 @@ const CollegeEssayStreamer = () => {
     formData.append('file', resumeFile);
     
     try {
-      const uploadResponse = await fetch('http://localhost:8000/upload_resume', {
+      const uploadResponse = await fetch(`${API_BASE_URL}/upload_resume`, {
         method: 'POST',
         body: formData,
       });
@@ -115,10 +127,11 @@ const CollegeEssayStreamer = () => {
       const params = new URLSearchParams({ 
         program, 
         student, 
+        college,
         resumeFilePath,
         model: selectedModel
       }).toString();
-      eventSourceRef.current = new EventSource(`http://localhost:8000/stream_college_essay?${params}`);
+      eventSourceRef.current = new EventSource(`${API_BASE_URL}/stream_college_essay?${params}`);
 
       eventSourceRef.current.onmessage = (event) => {
         const data = event.data.replace(/^data: /, '').trim();
@@ -146,7 +159,7 @@ const CollegeEssayStreamer = () => {
       setError(`Failed to start essay generation: ${err.message}`);
       setIsStreaming(false);
     }
-  }, [program, student, resumeFile, selectedModel, setIsStreaming, setMessages, setError, setPdfContent, addMessage]);
+  }, [program, student, college, resumeFile, selectedModel, setIsStreaming, setMessages, setError, setPdfContent, addMessage]);
 
   const handleClear = useCallback(() => {
     if (eventSourceRef.current) {
@@ -159,8 +172,19 @@ const CollegeEssayStreamer = () => {
     <div className="w-auto h-auto border border-gray-600 flex flex-col justify-between p-4">
       <InputField placeholder="Student Name" value={student} onChange={setStudent} />
       <InputField placeholder="Program" value={program} onChange={setProgram} />
+      <Select 
+        value={college} 
+        onChange={setCollege} 
+        options={colleges} 
+        placeholder="Select College"
+      />
       <FileInput onChange={setResumeFile} />
-      <ModelSelect value={selectedModel} onChange={setSelectedModel} options={models} />
+      <Select 
+        value={selectedModel} 
+        onChange={setSelectedModel} 
+        options={models}
+        placeholder="Select Model"
+      />
       
       <MessageDisplay messages={messages} />
       

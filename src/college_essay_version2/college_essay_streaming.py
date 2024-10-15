@@ -10,10 +10,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from college_essay_version2.crew import CollegeEssayVersion2Crew
 from crewai_tools import FileReadTool
 
-# Initialize FastAPI app
+# Initialize FastAPI App and Configure CORS
 app = FastAPI()
-
-# Configure CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -22,9 +20,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Set up upload directory
+# Set up upload directory for resume files
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
+
 
 class StreamingCollegeEssayCrewRunner(CollegeEssayVersion2Crew):
     def __init__(self, model):
@@ -35,7 +34,7 @@ class StreamingCollegeEssayCrewRunner(CollegeEssayVersion2Crew):
         file_reader_tool = FileReadTool(file_path=file_path)
         return file_reader_tool.run()
 
-async def college_essay_stream(program: str, student: str, resume_file_path: str, model: str):
+async def college_essay_stream(program: str, student: str, college: str, resume_file_path: str, model: str):
     """
     Generator function to stream the college essay creation process.
     Yields status updates and the final PDF content.
@@ -51,8 +50,9 @@ async def college_essay_stream(program: str, student: str, resume_file_path: str
         'file_content': file_content,
         'program': program,
         'output_essay': "essay",
+        'college': college,
         'student': student,
-        'model': model  # Include the selected model in the inputs
+        'model': model
     }
     
     # Stream input information
@@ -101,6 +101,7 @@ async def upload_resume(file: UploadFile = File(...)):
 async def stream_college_essay(
     program: str = Query(..., description="Program name"),
     student: str = Query(..., description="Student name"),
+    college: str = Query(..., description="College name"),
     resumeFilePath: str = Query(..., description="Path to uploaded resume file"),
     model: str = Query(..., description="Selected language model")
 ):
@@ -109,7 +110,7 @@ async def stream_college_essay(
     Returns a StreamingResponse with real-time updates.
     """
     return StreamingResponse(
-        college_essay_stream(program, student, resumeFilePath, model),
+        college_essay_stream(program, student, college, resumeFilePath, model),
         media_type="text/event-stream"
     )
 

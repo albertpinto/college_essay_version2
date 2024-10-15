@@ -12,15 +12,6 @@ import os
 from langchain.agents import initialize_agent, Tool
 from college_essay_version2.tools.txt_PDF_tool import PDFConversionTool
 
-# Uncomment this to use openAI models.
-#OpenAI models
-#llm='gpt-4o','gpt-3.5-turbo',"o1-preview"
-llm ="o1-mini"
-
-# Initialize Ollama LLM
-# Use this for non openAI models
-
-#llm=LLM(model="ollama/llama3.1", base_url="http://localhost:11434")
 
 @CrewBase
 class CollegeEssayVersion2Crew():
@@ -34,6 +25,7 @@ class CollegeEssayVersion2Crew():
 	def _set_llm(self):
 		if self.model in ['gpt-4o', 'gpt-3.5-turbo', 'claude-2.5', 'o1-preview','o1-mini']:
 			return self.model
+		
 		else:
 			return LLM(model="ollama/"+ self.model, base_url="http://localhost:11434")
 	
